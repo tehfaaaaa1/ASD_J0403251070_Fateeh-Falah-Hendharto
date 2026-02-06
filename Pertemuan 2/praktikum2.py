@@ -5,7 +5,7 @@ Praktikum 2: Konsep ADT dan File Handling (STUDI KASUS)
 # Latihan 1: Membuat fungsi load data
 NAMA_FILE = "data_mahasiswa.txt"
 def read_data(filename):
-    "buat baca data"
+    "Fungsi untuk membaca  data. filename = file data mahasiswa. Return data sebagai dictionary."
     data_dict = {}
     with open(filename, "r", encoding="utf-8") as file:
         for baris in file:
@@ -23,24 +23,26 @@ def read_data(filename):
 
 # Latihan 2: Membuat fungsi load data
 def show_data(data):
-    "Membuat fungsi load data"
+    "Membuat fungsi load data. Param data = dictionary "
     if len(data) == 0:
         print("Data kosong")
         return
     print("\n=== Daftar Mahasiswa ===")
     print(f"{'NIM': <10} | {'Nama': <12} | {'Nilai': >5}")
+    # <10 = 10 char terawal
+    # >5 = 5 char terakhir
     print("-" * 33)
 
     for nim in sorted(data.keys()):
         nama = data[nim]['nama']
         nilai = data[nim]['nilai']
-        print(f"{nim: <10} | {nama: <12} | {nilai: <5}")
+        print(f"{nim: <10} | {nama: <12} | {nilai: >5}")
 
 # show_data(data_mhs)
 
 # Latihan 3: Mencari data
 def search_data(data):
-    "Cari data"
+    "Fungsi mencari data. data = data yang telah di-fetch."
     nim_cari = input("Masukkan NIM yang ingin dicari: ").strip()
 
     if nim_cari in data:
@@ -58,7 +60,7 @@ def search_data(data):
 
 # Latihan 4: Update data
 def update_data(data):
-    "Update data"
+    "Update data. data = data yang telah di-fetch."
     nim = input("Masukkan NIM mahasiswa yang nilainya akan diubah: ").strip()
 
     if nim not in data:
@@ -81,7 +83,11 @@ def update_data(data):
 
 # Latihan 5: Simpan perubahan data ke file
 def save_data(filename, data):
-    "Simpan perubahan data ke file"
+    """
+    Simpan perubahan data ke file.\n
+    filename = nama file yang akan digunakan untuk save\n
+    data = data yang telah di-fetch.
+    """
     with open(filename, "w", encoding="utf-8") as file:
         for nim in sorted(data.keys()):
             nama = data[nim]["nama"]
@@ -93,7 +99,8 @@ def save_data(filename, data):
 # print("Data berhasil disimpan!")
 
 def main():
-    # Fungsi 1 load data
+    "Menu program dashboard program mahasiswa."
+    # Fungsi load data
     open_data = read_data(NAMA_FILE)
 
     while True:

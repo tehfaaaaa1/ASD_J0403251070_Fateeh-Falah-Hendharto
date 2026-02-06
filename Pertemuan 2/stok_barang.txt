@@ -1,0 +1,5 @@
+BRG1,Headset,10
+BRG2,Jam Beker,20
+BRG3,iPhone 17,2
+BRG4,Kaos kaki,30
+BRG5,Mouse Logitech,4
