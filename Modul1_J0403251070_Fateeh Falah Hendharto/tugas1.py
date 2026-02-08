@@ -1,10 +1,22 @@
 """
-Tugas Hands-on (Stok Barang Kantin)
+=============================================================
+TUGAS HANDS-ON MODUL 1
+# Studi Kasus: Sistem Stok Barang Kantin (Berbasis File .txt)
+
+# Nama : Fateeh Falah Hendharto
+# NIM :J0403251070
+# Kelas : B1
+=============================================================
 """
-# Global variable
+
+# -------------------------------
+# Konstanta nama file
+# -------------------------------
 FILENAME = "stok_barang.txt"
 
-# Fetch data
+# -------------------------------
+# Fungsi: Membaca data dari file
+# -------------------------------
 def fetch(filename):
     "Fetch data dari file. filename = nama file termasuk ekstensi."
     # Buka file
@@ -22,6 +34,9 @@ def fetch(filename):
     return data_dict
 
 # Menu functions
+# -------------------------------
+# Fungsi: Menampilkan semua data
+# -------------------------------
 def show(data):
     "Tunjukkan list semua data. data = variabel dictionary data yang sudah di-fetch."
     # Check if empty
@@ -35,6 +50,9 @@ def show(data):
     for row in data.keys():
         print(f"{row: <6} | {data[row]['nama_barang']: <25} | {data[row]['stok_barang']: <3}")
 
+# -------------------------------
+# Fungsi: Cari barang berdasarkan kode
+# -------------------------------
 def search(data):
     "Cari data yang diinginkan. data = variabel dictionary data yang sudah di-fetch."
     result = input("Ketik kode barang: ").strip().upper()
@@ -47,6 +65,9 @@ def search(data):
     print(f"Produk\t: {data[result]['nama_barang']}")
     print(f"Stok\t: {data[result]['stok_barang']}")
 
+# -------------------------------
+# Fungsi: Tambah barang baru
+# -------------------------------
 def create(data):
     """
     Membuat barang baru ke database.\n
@@ -72,6 +93,9 @@ def create(data):
     data[last_id] = {"nama_barang": new_product, "stok_barang": new_stock}
     print("Produk berhasil ditambah!")
 
+# -------------------------------
+# Fungsi: Update stok barang
+# -------------------------------
 def update(data):
     "Update data dalam file. data = variabel dictionary data yang sudah di-fetch."
     id_input = input("Masukkan kode barang: ").strip().upper()
@@ -98,6 +122,9 @@ def update(data):
     }
     print("Data berhasil diubah!")
 
+# -------------------------------
+# Fungsi: Menyimpan data ke file
+# -------------------------------
 def save(filename, data):
     """
     Menyimpan data ke database.\n
@@ -110,6 +137,9 @@ def save(filename, data):
             file.write(f"{row},{data[row]['nama_barang']},{data[row]['stok_barang']}\n")
     print("Data berhasil disimpan!")
 
+# -------------------------------
+# Program Utama
+# -------------------------------
 def main():
     "Main program."
     data = fetch(FILENAME)
@@ -117,12 +147,12 @@ def main():
     while True:
         print("\nTARGET WAREHOUSE")
         print("==================")
-        print("1. Show all product")
-        print("2. Search an item")
-        print("3. Insert new product")
-        print("4. Update an item")
-        print("5. Save changes")
-        print("0. Exit program")
+        print("1. Tampilkan semua barang")
+        print("2. Cari barang berdasarkan kode")
+        print("3. Tambah barang baru")
+        print("4. Update stok barang")
+        print("5. Simpan ke file")
+        print("0. Keluar dari program")
 
         # Memilih menu dan menjalankan functions
         match int(input("Pilih menu di atas: ")):
@@ -142,6 +172,6 @@ def main():
             case _: # Default
                 print("Masukkan angka saja!")
 
-# Check if file yang di-run adalah main
+# Menjalankan program utama
 if __name__ == "__main__":
     main()
