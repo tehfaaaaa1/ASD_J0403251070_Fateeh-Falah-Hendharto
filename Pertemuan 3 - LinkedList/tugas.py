@@ -126,13 +126,13 @@ CSLL_lat_2_1.insert_at_end(25)
 print("Circular Single Linked List Sample:")
 CSLL_lat_2_1.display()
 
-# x = int(input("Ketik angka yang dicari: "))
+x = int(input("Ketik angka yang dicari: "))
 
-# match (CSLL_lat_2_1.search(x)):
-#     case True:
-#         print("Angka ditemukan!")
-#     case False:
-#         print("Angka tidak ditemukan!")
+match (CSLL_lat_2_1.search(x)):
+    case True:
+        print("Angka ditemukan!")
+    case False:
+        print("Angka tidak ditemukan!")
 
 # Latihan 4
 LL_lat_4_x = LinkedList()
