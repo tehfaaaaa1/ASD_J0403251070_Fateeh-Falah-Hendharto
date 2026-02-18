@@ -21,7 +21,7 @@ class LinkedList:
         else:
             self.tail.next = new_node # Sambung tail ke node baru
             self.tail = new_node # Update tail ke node baru
-    
+
     def display(self):
         temp = self.head
         while temp:
