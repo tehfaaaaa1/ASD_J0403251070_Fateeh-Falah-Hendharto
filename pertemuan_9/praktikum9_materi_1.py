@@ -1,4 +1,8 @@
 """
+Nama    : Fateeh Falah Hendharto
+NIM     : J0403251070
+Kelas   : B1
+
 Latihan 1 : Membuat Node Tree
 """
 
@@ -21,3 +25,16 @@ root.right.right = Node("F")
 print("Data pada root:", root.data)
 print("Child kiri root:", root.left.data)
 print("Child kanan root:", root.right.data)
+
+# Penjelasan ...............
+# Dengan data LinkedList, kita bisa memperluas data kita menjadi hierarki.
+# Hierarki ini disebut dengan "Tree". Pada Tree ini terdapat node2 yang saling berhubungan,
+# di antaranya adalah Parent (atasan) dan Child (bawahan).
+# Root sendiri adalah node paling atas alias Adam dalam data tree.
+# Jadi, strukturnya seperti berikut:
+# Root (Parent)
+# |- Child
+# |-- Grandchild
+# |- Child
+# Pemakaiannya menggunakan variable left dan right seperti
+# next dan previous dalam Double Linked List.

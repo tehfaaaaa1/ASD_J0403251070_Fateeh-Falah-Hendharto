@@ -1,4 +1,8 @@
 """
+Nama    : Fateeh Falah Hendharto
+NIM     : J0403251070
+Kelas   : B1
+
 Latihan 6 : Struktur Organisasi Perusahaan
 """
 
@@ -34,3 +38,9 @@ root.right.right = Node("Staff 3")
 # Traversal
 print("Struktur Organsisasi A:")
 preorder(root)
+
+# Penjelasan ...............
+# Pada suatu hari, ada seseorang bernama Direktur yang memiliki
+# 2 anak, yaitu Manajer A dan Manajer B. Mereka berdua juga memiliki
+# anak sendiri. Anaknya Manajer A ada Staff 1 dan Staff 2, sedangkan
+# Anaknya Manajer B ada Staff 3. Keluarga ini hidup tentram dalam satu perumahan.
