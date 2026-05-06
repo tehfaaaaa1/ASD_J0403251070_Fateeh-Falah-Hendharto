@@ -2,41 +2,54 @@
 Nama    : Fateeh Falah Hendharto
 NIM     : J0403251070
 Kelas   : B
-Pertemuan 12 - Materi 1
-Topik   : Algoritma Dijkstra
+Pertemuan 12 - Graph II: Shortest Path
 """
+
+# ==========================================================
+# Latihan 4: Studi Kasus Jalur Terpendek Lokasi Kampus
+# Algoritma: Dijkstra
+# ==========================================================
 
 import heapq
 
 def dijkstra(graph, start):
-    # Menyimpan jarak minimum / infinite
     distances = {node: float('inf') for node in graph}
-
-    # Jarak Node Awal = 0
     distances[start] = 0
-
-    # Priority Queue
-    pq = [(0, start)]
-
-    while pq:
-        current_distance, current_node = heapq.heappop(pq)
-    
-    # Periksa semua tetangga
-    for neighbor, weight in graph[current_node].items():
-        distance = current_distance + weight
-        
-        # Jika ditemukan jarak lebih kecil
+    priority_queue = [(0, start)]
+    while priority_queue:
+        current_distance, current_node = heapq.heappop(priority_queue)
+        if current_distance > distances[current_node]:
+            continue 
+        for neighbor, weight in graph[current_node].items():
+            distance = current_distance + weight
         if distance < distances[neighbor]:
             distances[neighbor] = distance
-            heapq.heappush(pq, (distance, neighbor))
-            
+            heapq.heappush(priority_queue, (distance, neighbor))
+
     return distances
 
+# Graph lokasi kampus
+# Bobot menunjukkan waktu tempuh dalam menit
 test_graph = {
-    'A': {'B': 4, 'C': 2},
-    'B': {'D': 5},
-    'C': {'D': 1},
-    'D': {},
+    'Gerbang': {'Perpustakaan': 6, 'Kantin': 2},
+    'Perpustakaan': {'Lab': 3},
+    'Kantin': {'Lab': 4, 'Aula': 7},
+    'Lab': {'Aula': 1},
+    'Aula': {}
 }
-hasil = dijkstra(test_graph, "A")
-print(hasil)
+
+hasil = dijkstra(test_graph, 'Gerbang')
+print("Jarak terpendek dari Gerbang Kampus:")
+for lokasi, jarak in hasil.items():
+    print(lokasi, "=", jarak, "menit") 
+
+# Jawaban Analisis:
+# 1. Lokasi mana yang paling dekat dari Gerbang?
+# Kantin
+# 2. Berapa waktu tempuh terpendek dari Gerbang ke Aula?
+# 9 menit
+# 3. Apakah jalur langsung selalu menghasilkan jarak paling kecil? Jelaskan.
+# Tidak, karena Dijkstra digunakan untuk mencari jarak paling kecil, jadi dicari
+# terlebih dahulu semua kemungkinan jalur yang dapat ditempuh.
+# 4. Mengapa Dijkstra cocok digunakan pada kasus lokasi kampus ini? 
+# Agar mahasiswa atau civitas kampus mengetahui jarak terdekat di beberapa titik sekitar kampus

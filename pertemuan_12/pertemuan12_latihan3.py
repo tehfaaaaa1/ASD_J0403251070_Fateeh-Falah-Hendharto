@@ -2,41 +2,63 @@
 Nama    : Fateeh Falah Hendharto
 NIM     : J0403251070
 Kelas   : B
-Pertemuan 12 - Materi 1
-Topik   : Algoritma Dijkstra
+Pertemuan 12 - Graph II: Shortest Path
 """
 
-import heapq
+# ==========================================================
+# Latihan 3: Implementasi Bellman-Ford
+# ==========================================================
 
-def dijkstra(graph, start):
-    # Menyimpan jarak minimum / infinite
+def bellman_ford(graph, start):
+    """
+    Fungsi untuk mencari jarak terpendek dari node start
+    ke seluruh node lain menggunakan algoritma Bellman-Ford.
+    """
+
+    # Semua jarak awal dibuat tak hingga
     distances = {node: float('inf') for node in graph}
 
-    # Jarak Node Awal = 0
+    # Jarak dari start ke start adalah 0
     distances[start] = 0
 
-    # Priority Queue
-    pq = [(0, start)]
-
-    while pq:
-        current_distance, current_node = heapq.heappop(pq)
-    
-    # Periksa semua tetangga
-    for neighbor, weight in graph[current_node].items():
-        distance = current_distance + weight
-        
-        # Jika ditemukan jarak lebih kecil
-        if distance < distances[neighbor]:
-            distances[neighbor] = distance
-            heapq.heappush(pq, (distance, neighbor))
-            
+    # Bellman-Ford melakukan relaksasi sebanyak jumlah node - 1
+    for _ in range(len(graph) - 1):
+        # Periksa semua edge
+        for node in graph:
+            for neighbor, weight in graph[node].items():
+                # Jika jarak ke node saat ini sudah diketahui,
+                # dan ditemukan jarak yang lebih kecil ke neighbor,
+                # maka lakukan update jarak
+                if distances[node] != float('inf') and distances[node] + weight < distances[neighbor]:
+                    distances[neighbor] = distances[node] + weight
+                    
     return distances
 
+# Weighted graph dengan bobot negatif
 test_graph = {
-    'A': {'B': 4, 'C': 2},
-    'B': {'D': 5},
-    'C': {'D': 1},
-    'D': {},
+    'A': {'B': 5, 'C': 4},
+    'B': {},
+    'C': {'B': -2} 
 }
-hasil = dijkstra(test_graph, "A")
-print(hasil)
+
+hasil = bellman_ford(test_graph, 'A')
+print("Jarak terpendek dari node A:")
+for node, distance in hasil.items():
+    print(node, "=", distance)
+
+# Jawaban Analisis:
+# 1. Berapa bobot langsung dari A ke B?
+#   0
+# 2. Berapa total bobot jalur A -> C -> B?
+#   2
+# 3. Jalur mana yang menghasilkan jarak lebih kecil menuju B?
+#   A -> C -> B
+# 4. Mengapa Bellman-Ford dapat digunakan pada graph dengan bobot negatif?
+# Karena algoritmanya selalu update jarak setiap vertex - 1 iterasi atau hampir setiap
+# traversal.
+# 5. Apa yang dimaksud dengan proses relaksasi edge?
+# Memperbarui jarak terpendek ke sebuah vertex jika ada jalur yang lebih singkat
+# di vertex tetangga
+# 6. Apa perbedaan utama Bellman-Ford dan Dijkstra?
+# Bellman-Ford menggunakan teknik relaksasi atau selalu update
+# Dijkstra menggunakan teknik greedy atau tidak pernah update

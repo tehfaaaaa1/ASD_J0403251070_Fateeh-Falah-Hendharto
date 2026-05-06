@@ -10,7 +10,7 @@ def bellman_ford(graph, start):
     distances = {node: float('inf') for node in graph}
     distances[start] = 0
     
-    # Relaksasi berulang
+    # Relaksasi berulang jumlah vertex - 1
     for _ in range(len(graph) - 1):
         for node in graph:
             for neighbor, weight in graph[node].items():

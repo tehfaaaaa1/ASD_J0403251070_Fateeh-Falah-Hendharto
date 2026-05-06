@@ -2,8 +2,7 @@
 Nama    : Fateeh Falah Hendharto
 NIM     : J0403251070
 Kelas   : B
-Pertemuan 12 - Materi 1
-Topik   : Algoritma Dijkstra
+Pertemuan 12 - Graph II: Shortest Path
 """
 
 # ==========================================================
@@ -61,4 +60,8 @@ for node, distance in hasil.items():
 # 4. Mengapa jarak A ke D lebih kecil melalui C dibandingkan melalui B?
 # Karena bobot melewati vertex C (2 + 3) lebih kecil daripada B (4 + 3)
 # 5. Apa fungsi priority_queue dalam algoritma Dijkstra?
-# 6. Mengapa Dijkstra tidak cocok untuk graph dengan bobot negatif? 
+# Untuk mempermudah visit dari jarak antar vertex terdekat
+# 6. Mengapa Dijkstra tidak cocok untuk graph dengan bobot negatif?
+# Karena Dijkstra mengasumsi bahwa setiap jalur node yang sudah visited tidak akan berubah.
+# Jadi, kalau ternyata mengakibatkan negatif bobot di jalur berikutnya, Dijkstra
+# tidak akan menghitung ulang jalur terpendeknya.
