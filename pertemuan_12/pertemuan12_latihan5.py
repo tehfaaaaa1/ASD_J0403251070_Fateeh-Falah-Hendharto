@@ -12,6 +12,7 @@ Pertemuan 12 - Graph II: Shortest Path
 
 import heapq
 
+
 def dijkstra(graph, start):
     # Menyimpan jarak minimum / infinite
     distances = {node: float('inf') for node in graph}
@@ -24,17 +25,18 @@ def dijkstra(graph, start):
 
     while pq:
         current_distance, current_node = heapq.heappop(pq)
-    
+
     # Periksa semua tetangga
     for neighbor, weight in graph[current_node].items():
         distance = current_distance + weight
-        
+
         # Jika ditemukan jarak lebih kecil
         if distance < distances[neighbor]:
             distances[neighbor] = distance
             heapq.heappush(pq, (distance, neighbor))
-            
+
     return distances
+
 
 # Graph lokasi kampus
 # Bobot menunjukkan waktu tempuh dalam menit
@@ -48,7 +50,7 @@ test_graph = {
 hasil = dijkstra(test_graph, 'bogor')
 print("Jarak terpendek dari Bogor:")
 for lokasi, jarak in hasil.items():
-    print("Bogor ->", lokasi, "=", jarak) 
+    print("Bogor ->", lokasi, "=", jarak)
 
 # Jawaban Analisis:
 # 1. Node awal yang digunakan apa?
@@ -66,6 +68,6 @@ for lokasi, jarak in hasil.items():
 # 3. Pilih node dengan jarak terkecil
 # 4. Perbarui jarak tetangganya
 # 5. Tandai node sebagai selesai diproses
-# 6. Ulangi sampai semua node selesai  
+# 6. Ulangi sampai semua node selesai
 # Dengan studi kasus yang diangkat, algoritma berusaha mencari jarak antar kota
 # yang terdekat.

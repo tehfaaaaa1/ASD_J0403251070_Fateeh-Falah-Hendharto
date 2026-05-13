@@ -9,6 +9,7 @@ Pertemuan 12 - Graph II: Shortest Path
 # Latihan 3: Implementasi Bellman-Ford
 # ==========================================================
 
+
 def bellman_ford(graph, start):
     """
     Fungsi untuk mencari jarak terpendek dari node start
@@ -31,14 +32,15 @@ def bellman_ford(graph, start):
                 # maka lakukan update jarak
                 if distances[node] != float('inf') and distances[node] + weight < distances[neighbor]:
                     distances[neighbor] = distances[node] + weight
-                    
+
     return distances
+
 
 # Weighted graph dengan bobot negatif
 test_graph = {
     'A': {'B': 5, 'C': 4},
     'B': {},
-    'C': {'B': -2} 
+    'C': {'B': -2}
 }
 
 hasil = bellman_ford(test_graph, 'A')

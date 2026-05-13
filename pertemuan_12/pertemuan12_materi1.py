@@ -8,6 +8,7 @@ Topik   : Algoritma Dijkstra
 
 import heapq
 
+
 def dijkstra(graph, start):
     # Menyimpan jarak minimum / infinite
     distances = {node: float('inf') for node in graph}
@@ -20,17 +21,18 @@ def dijkstra(graph, start):
 
     while pq:
         current_distance, current_node = heapq.heappop(pq)
-    
+
     # Periksa semua tetangga
     for neighbor, weight in graph[current_node].items():
         distance = current_distance + weight
-        
+
         # Jika ditemukan jarak lebih kecil
         if distance < distances[neighbor]:
             distances[neighbor] = distance
             heapq.heappush(pq, (distance, neighbor))
-            
+
     return distances
+
 
 test_graph = {
     'A': {'B': 4, 'C': 2},

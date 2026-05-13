@@ -12,6 +12,7 @@ Pertemuan 12 - Graph II: Shortest Path
 
 import heapq
 
+
 def dijkstra(graph, start):
     distances = {node: float('inf') for node in graph}
     distances[start] = 0
@@ -19,7 +20,7 @@ def dijkstra(graph, start):
     while priority_queue:
         current_distance, current_node = heapq.heappop(priority_queue)
         if current_distance > distances[current_node]:
-            continue 
+            continue
         for neighbor, weight in graph[current_node].items():
             distance = current_distance + weight
         if distance < distances[neighbor]:
@@ -27,6 +28,7 @@ def dijkstra(graph, start):
             heapq.heappush(priority_queue, (distance, neighbor))
 
     return distances
+
 
 # Graph lokasi kampus
 # Bobot menunjukkan waktu tempuh dalam menit
@@ -41,7 +43,7 @@ test_graph = {
 hasil = dijkstra(test_graph, 'Gerbang')
 print("Jarak terpendek dari Gerbang Kampus:")
 for lokasi, jarak in hasil.items():
-    print(lokasi, "=", jarak, "menit") 
+    print(lokasi, "=", jarak, "menit")
 
 # Jawaban Analisis:
 # 1. Lokasi mana yang paling dekat dari Gerbang?
@@ -51,5 +53,5 @@ for lokasi, jarak in hasil.items():
 # 3. Apakah jalur langsung selalu menghasilkan jarak paling kecil? Jelaskan.
 # Tidak, karena Dijkstra digunakan untuk mencari jarak paling kecil, jadi dicari
 # terlebih dahulu semua kemungkinan jalur yang dapat ditempuh.
-# 4. Mengapa Dijkstra cocok digunakan pada kasus lokasi kampus ini? 
+# 4. Mengapa Dijkstra cocok digunakan pada kasus lokasi kampus ini?
 # Agar mahasiswa atau civitas kampus mengetahui jarak terdekat di beberapa titik sekitar kampus
